@@ -1,0 +1,36 @@
+## ECOMMERCE QUERIES 
+
+-- List orders along with their payments status and method
+SELECT Orders.OrderID, Payments.PaymentMethod, Payments.PaymentStatus, Payments.PaymentDate
+FROM Orders
+JOIN Payments ON Orders.OrderID = Payments.OrderID;
+
+-- Calculate total sales by product
+SELECT Products.ProductName, SUM(OrderDetails.Quantity * Products.Price) AS TotalSales 
+FROM OrderDetails 
+JOIN Products ON OrderDetails.ProductID = Products.ProductID
+GROUP BY Products.ProductName;
+
+-- List orders along with their payment status and method
+SELECT Orders.OrderID, Payments.PaymentMethod, Payments.PaymentStatus, Payments.PaymentDate
+FROM Orders
+JOIN Payments ON Orders.OrderID = Payments.OrderID;
+
+-- Retrieve all unpaid or pending payments
+SELECT OrderID, Amount, PaymentMethod, PaymentStatus
+FROM Payments
+WHERE PaymentStatus = 'Pending';
+
+-- Retrieve shipping details for each order, including tracking numbers and status.
+SELECT Orders.OrderID, Shipping.ShippingMethod, Shipping.TrackingNumber, Shipping.ShippingStatus
+FROM Orders
+JOIN Shipping ON Orders.OrderID = Shipping.OrderID;
+
+-- Identify orders that have not yet been shipped
+SELECT OrderID
+FROM Orders
+WHERE OrderID NOT IN (SELECT OrderID FROM Shipping);
+
+
+-- checking all tables in the database  
+SELECT table_name FROM information_schema.tables WHERE table_schema = '	ECommerceDB';
