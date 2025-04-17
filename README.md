@@ -104,4 +104,7 @@ Each table includes realistic data entries:
  - Track inventory and restocks
  - Include returns, refunds, and coupons
  - Add audit logs and timestamps
+
    
+## License
+  Licensed under the MIT lincense.
